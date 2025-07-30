@@ -48,9 +48,9 @@
   <div id="modal-bg">
     <div id="modal-content">
       <button id="modal-close">&times;</button>
-      <div id="modal-title">\uB85C\uB610 \uBC88\uD638 \uCD94\uCC9C\uAE30</div>
+      <div id="modal-title">?? ?? ???</div>
       <div id="lotto-ball-btn">7</div>
-      <div id="lotto-label">\uACF5\uC744 \uD074\uB9AD\uD574 \uCD94\uCC9C!</div>
+      <div id="lotto-label">?? ??? ??!</div>
     </div>
   </div>
   <script>
@@ -71,7 +71,7 @@
     isRolling = true;
     let $ball = this;
     let $label = document.getElementById('lotto-label');
-    $label.textContent = '\uAD74\uB9B0\uB2E4...';
+    $label.textContent = '??? ?...';
     let roll = 0;
     let rolling = setInterval(()=>{
       $ball.textContent = Math.floor(Math.random()*8)+1;
@@ -80,7 +80,7 @@
         clearInterval(rolling);
         let num = Math.floor(Math.random()*8)+1;
         $ball.textContent = num;
-        $label.textContent = '\uB2F9\uCCA8 \uBC88\uD638: ' + num + '\uBC88! ?';
+        $label.textContent = '????: ' + num + '?!';
         isRolling = false;
       }
     },110);
