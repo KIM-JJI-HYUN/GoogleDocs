@@ -29,32 +29,4 @@
       document.body.style.margin = '0 auto';
     });
   </script>
-  
-  <div id="lotto-container" style="text-align:center; margin-top:40px;">
-    <button id="lotto-btn" style="padding:12px 28px; font-size:1.2em; border-radius:40px; background:#4f8cff; color:#fff; border:none; cursor:pointer;">?? ?? ??!</button>
-    <div id="lotto-ball" style="margin:40px auto 0; font-size:3em; font-weight:bold; display:none; width:100px; height:100px; border-radius:50%; background:#fff94f; color:#262626; line-height:100px; box-shadow:0 4px 18px rgba(0,0,0,0.18);"></div>
-  </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var btn = document.getElementById('lotto-btn');
-      var ball = document.getElementById('lotto-ball');
-      btn.onclick = function() {
-        btn.disabled = true;
-        ball.style.display = 'block';
-        ball.textContent = '';
-        var i = 0;
-        var anim = setInterval(function() {
-          ball.textContent = Math.floor(Math.random() * 8) + 1;
-          i++;
-          if (i > 18) {
-            clearInterval(anim);
-            var final = Math.floor(Math.random() * 8) + 1;
-            ball.textContent = final;
-            btn.disabled = false;
-            btn.textContent = '?? ????';
-          }
-        }, 170);
-      };
-    });
-  </script>
   </body></html>
