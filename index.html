@@ -29,4 +29,116 @@
       document.body.style.margin = '0 auto';
     });
   </script>
-  </body></html>
+  
+<style>
+  /* ???? ??? ?? ?? */
+  @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+  .lotto-container {
+    font-family: 'Jua', sans-serif;
+    background-color: #f2f7ff;
+    padding: 40px 20px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    margin: 40px;
+    width: 300px;
+  }
+
+  /* ?? ? ??? */
+  .lotto-ball {
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(145deg, #ffde59, #ffbe0b);
+    border-radius: 50%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #493b00;
+    font-size: 5em; /* ?? ?? */
+    font-weight: bold;
+    box-shadow: inset -5px -5px 15px rgba(0,0,0,0.15), 0 10px 20px rgba(0,0,0,0.2);
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); /* ?? ?? ?? */
+  }
+
+  /* ????? ? ??/?? ?? */
+  .lotto-ball.spinning {
+    transform: scale(1.1);
+  }
+
+  /* ?? ?? ??? */
+  .lotto-button {
+    font-family: 'Jua', sans-serif;
+    background: linear-gradient(145deg, #5b86e5, #36d1dc);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 5px 15px rgba(54, 209, 220, 0.4);
+  }
+
+  /* ??? ??? ??? ? */
+  .lotto-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(54, 209, 220, 0.6);
+  }
+
+  /* ????? ?? */
+  .lotto-button:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    transform: translateY(0);
+    box-shadow: none;
+  }
+</style>
+
+<div class="lotto-container">
+  <div id="lotto-display" class="lotto-ball">?</div>
+  
+  <button id="lotto-generator-btn" class="lotto-button">?? ??!</button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const display = document.getElementById('lotto-display');
+    const button = document.getElementById('lotto-generator-btn');
+
+    button.addEventListener('click', function() {
+      // 1. ?? ???? ? ??? ??
+      button.disabled = true;
+      button.textContent = '?? ?...';
+      
+      let spinCount = 0;
+      const maxSpins = 25; // ????? ?? (? 2.5?)
+      
+      // 2. ??? ??? ??? ????? ??
+      const animation = setInterval(() => {
+        // 1?? 8??? ?? ?? ??
+        const randomNumber = Math.floor(Math.random() * 8) + 1;
+        display.textContent = randomNumber;
+        
+        // ?? ??? ???? ?? ??
+        display.classList.toggle('spinning');
+        
+        spinCount++;
+        
+        // 3. ??? ???? ?? ? ????? ??
+        if (spinCount > maxSpins) {
+          clearInterval(animation);
+          display.classList.remove('spinning'); // ?? ?? ??
+
+          // 4. ?? ?? ?? ? ?? ???
+          const finalNumber = Math.floor(Math.random() * 8) + 1;
+          display.textContent = finalNumber;
+          
+          button.disabled = false;
+          button.textContent = '?? ??!';
+        }
+      }, 100); // 0.1??? ?? ??
+    });
+  });
+</script>
+</body></html>
