@@ -29,4 +29,31 @@
       document.body.style.margin = '0 auto';
     });
   </script>
+  
+  <div id="lotto-container" style="text-align:center; margin:40px;">
+    <button id="lotto-btn" style="padding:12px 28px; font-size:1.1em; border-radius:8px; background:#5c67f2; color:white; border:none; cursor:pointer;">?? ??</button>
+    <div id="lotto-result" style="font-size:2.5em; margin-top:20px; font-weight:bold; color:#333;"></div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const lottoBtn = document.getElementById('lotto-btn');
+      const lottoResult = document.getElementById('lotto-result');
+      
+      lottoBtn.addEventListener('click', function() {
+        lottoBtn.disabled = true;
+        lottoResult.textContent = '?';
+
+        let count = 0;
+        const animation = setInterval(() => {
+          lottoResult.textContent = Math.floor(Math.random() * 45) + 1;
+          if (++count > 20) {
+            clearInterval(animation);
+            const finalNumber = Math.floor(Math.random() * 45) + 1;
+            lottoResult.textContent = finalNumber;
+            lottoBtn.disabled = false;
+          }
+        }, 100);
+      });
+    });
+  </script>
   </body></html>
