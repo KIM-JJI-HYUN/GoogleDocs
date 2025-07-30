@@ -31,113 +31,90 @@
   </script>
   
 <style>
-  /* ???? ??? ?? ?? */
-  @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
-  .lotto-container {
-    font-family: 'Jua', sans-serif;
-    background-color: #f2f7ff;
-    padding: 40px 20px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    margin: 40px;
-    width: 300px;
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+  .lucky-draw-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 30px;
+    font-family: 'Nanum Gothic', sans-serif;
   }
-
-  /* ?? ? ??? */
-  .lotto-ball {
-    width: 150px;
-    height: 150px;
-    background: linear-gradient(145deg, #ffde59, #ffbe0b);
+  .lucky-draw-title {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  .lucky-draw-ball {
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(145deg, #fee155, #fbbd08);
     border-radius: 50%;
-    margin: 20px auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #493b00;
-    font-size: 5em; /* ?? ?? */
-    font-weight: bold;
-    box-shadow: inset -5px -5px 15px rgba(0,0,0,0.15), 0 10px 20px rgba(0,0,0,0.2);
-    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); /* ?? ?? ?? */
+    color: #3a2e00;
+    font-size: 4.5em;
+    font-weight: 700;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15), inset -4px -4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.15s ease;
   }
-
-  /* ????? ? ??/?? ?? */
-  .lotto-ball.spinning {
-    transform: scale(1.1);
-  }
-
-  /* ?? ?? ??? */
-  .lotto-button {
-    font-family: 'Jua', sans-serif;
-    background: linear-gradient(145deg, #5b86e5, #36d1dc);
-    color: white;
+  .lucky-draw-button {
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: 700;
     border: none;
-    padding: 15px 40px;
     border-radius: 50px;
-    font-size: 1.5em;
+    color: white;
+    background: linear-gradient(145deg, #56d4f2, #2f80ed);
+    padding: 14px 35px;
+    font-size: 1.2em;
+    margin-top: 25px;
     cursor: pointer;
+    box-shadow: 0 6px 15px rgba(47, 128, 237, 0.4);
     transition: all 0.2s ease-in-out;
-    box-shadow: 0 5px 15px rgba(54, 209, 220, 0.4);
   }
-
-  /* ??? ??? ??? ? */
-  .lotto-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(54, 209, 220, 0.6);
+  .lucky-draw-button:hover {
+    transform: translateY(-2px);
   }
-
-  /* ????? ?? */
-  .lotto-button:disabled {
-    background: #bdc3c7;
-    cursor: not-allowed;
+  .lucky-draw-button:disabled {
+    background: #b0bec5;
     transform: translateY(0);
     box-shadow: none;
+    cursor: not-allowed;
   }
 </style>
 
-<div class="lotto-container">
-  <div id="lotto-display" class="lotto-ball">?</div>
-  
-  <button id="lotto-generator-btn" class="lotto-button">?? ??!</button>
+<div class="lucky-draw-container">
+  <div class="lucky-draw-title">??? ?? ??</div>
+  <div id="lucky-ball" class="lucky-draw-ball">?</div>
+  <button id="lucky-button" class="lucky-draw-button">?? ??</button>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const display = document.getElementById('lotto-display');
-    const button = document.getElementById('lotto-generator-btn');
+    const ball = document.getElementById('lucky-ball');
+    const button = document.getElementById('lucky-button');
 
     button.addEventListener('click', function() {
-      // 1. ?? ???? ? ??? ??
       button.disabled = true;
       button.textContent = '?? ?...';
       
       let spinCount = 0;
-      const maxSpins = 25; // ????? ?? (? 2.5?)
-      
-      // 2. ??? ??? ??? ????? ??
       const animation = setInterval(() => {
-        // 1?? 8??? ?? ?? ??
-        const randomNumber = Math.floor(Math.random() * 8) + 1;
-        display.textContent = randomNumber;
-        
-        // ?? ??? ???? ?? ??
-        display.classList.toggle('spinning');
-        
-        spinCount++;
-        
-        // 3. ??? ???? ?? ? ????? ??
-        if (spinCount > maxSpins) {
-          clearInterval(animation);
-          display.classList.remove('spinning'); // ?? ?? ??
+        ball.textContent = Math.floor(Math.random() * 8) + 1;
+        ball.style.transform = "scale(1.0795402762371185)";
 
-          // 4. ?? ?? ?? ? ?? ???
+        if (++spinCount > 20) {
+          clearInterval(animation);
           const finalNumber = Math.floor(Math.random() * 8) + 1;
-          display.textContent = finalNumber;
-          
+          ball.textContent = finalNumber;
+          ball.style.transform = 'scale(1)';
           button.disabled = false;
-          button.textContent = '?? ??!';
+          button.textContent = '?? ??';
         }
-      }, 100); // 0.1??? ?? ??
+      }, 100);
     });
   });
 </script>
