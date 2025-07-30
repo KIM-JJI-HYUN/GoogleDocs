@@ -71,7 +71,7 @@
     isRolling = true;
     let $ball = this;
     let $label = document.getElementById('lotto-label');
-    $label.textContent = '??? ?...';
+    $label.textContent = '??? ? ..';
     let roll = 0;
     let rolling = setInterval(()=>{
       $ball.textContent = Math.floor(Math.random()*8)+1;
@@ -80,7 +80,7 @@
         clearInterval(rolling);
         let num = Math.floor(Math.random()*8)+1;
         $ball.textContent = num;
-        $label.textContent = '????: ' + num + '?!';
+        $label.textContent = '?? ??: ' + num + '?!';
         isRolling = false;
       }
     },110);
